@@ -818,7 +818,7 @@
             border-radius: 12px;
             color: var(--text-light);
             font-family: 'Cairo', sans-serif;
-            font-size: 16px; /* مهم جداً: يمنع الآيفون من عمل Zoom أوتوماتيك */
+            font-size: 16px; 
             transition: all 0.3s ease;
         }
         
@@ -843,7 +843,7 @@
         .submit-btn:disabled { opacity: 0.7; cursor: not-allowed; }
         
        .wishes-ticker {
-    background: rgba(93, 173, 226, 0.05); /* خلفية سماوية هادئة */
+    background: rgba(93, 173, 226, 0.05); 
     border: 1px solid var(--gold);
     border-radius: 15px;
     padding: 20px;
@@ -856,7 +856,6 @@
     margin-bottom: 15px; 
 }
 
-/* تحويل العرض للطول مع إضافة شريط تمرير */
 .ticker-content { 
     display: flex; 
     flex-direction: column; /* العرض بالطول */
@@ -866,7 +865,6 @@
     padding-left: 10px; /* مسافة لشريط التمرير */
 }
 
-/* تجميل شكل شريط التمرير ليكون أنيقاً */
 .ticker-content::-webkit-scrollbar {
     width: 6px;
 }
@@ -885,7 +883,6 @@
     border-radius: 12px;
     border-right: 4px solid var(--gold);
     width: 100%;
-    /* الحل الجذري لمشكلة خروج النص */
     white-space: normal; 
     word-wrap: break-word; 
     overflow-wrap: break-word;
@@ -900,7 +897,7 @@
 .wish-item .wish-text { 
     color: var(--text-light); 
     font-size: 0.95rem; 
-    line-height: 1.6; /* مسافة مريحة بين السطور */
+    line-height: 1.6; 
 }
         /* Sections عامة */
         section { padding: 80px 20px; max-width: 900px; margin: 0 auto; position: relative; z-index: 2; }
@@ -928,7 +925,7 @@
         @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         
         .music-control {
-            position: fixed; bottom: 30px; right: 20px; /* نقلناه لليمين عشان يكون أسهل في الإبهام */
+            position: fixed; bottom: 30px; right: 20px; 
             width: 55px; height: 55px;
             background: var(--gold); color: #000;
             border: none; border-radius: 50%;
@@ -952,13 +949,13 @@
         /* ===== الفوتر الجديد مع اسم المصمم ===== */
         footer {
             background: var(--bg-darker);
-            padding: 50px 20px 40px; /* زيادة المسافة من الأسفل عشان شريط الآيفون */
+            padding: 50px 20px 40px; 
             text-align: center;
             color: var(--text-muted);
             border-top: 1px solid rgba(212, 175, 55, 0.2);
             position: relative;
             z-index: 2;
-            padding-bottom: max(30px, env(safe-area-inset-bottom)); /* دعم شريط الآيفون السفلي */
+            padding-bottom: max(30px, env(safe-area-inset-bottom)); 
         }
         
         footer p { font-size: 1.2rem; margin-bottom: 20px; }
@@ -1244,7 +1241,6 @@
     <section class="wishes-section reveal">
         <h2 class="section-title">تهنئة للعروسين</h2>
 
-        <!-- نموذج كتابة التهنئة (متاح للجميع) -->
         <div class="wishes-form">
             <h3>💌 اترك تهنئتك لأيمن وداليا 💌</h3>
             <form onsubmit="submitPublicWish(event)">
@@ -1260,7 +1256,6 @@
             </form>
         </div>
 
-        <!-- واجهة إدخال كلمة المرور لرؤية التعليقات السابقة -->
         <div id="password-container" style="text-align: center; background: rgba(93, 173, 226, 0.05); border: 1px solid var(--gold); border-radius: 15px; padding: 30px 20px;">
             <h4 style="color: var(--gold); margin-bottom: 15px; font-size: 1.3rem;">رسائل الضيوف</h4>
             <p style="color: var(--text-muted); margin-bottom: 20px; font-size: 1rem;">هذا القسم خاص بالعريس لعرض التهاني</p>
@@ -1272,7 +1267,6 @@
             <p id="password-error" style="color: #e74c3c; margin-top: 10px; display: none; font-weight: 600;">كلمة المرور غير صحيحة!</p>
         </div>
 
-        <!-- التعليقات السابقة (مخفية افتراضياً) -->
         <div id="wishes-content" style="display: none;">
             <div class="wishes-ticker">
                 <h4>تهنئات الضيوف</h4>
@@ -1292,11 +1286,8 @@
 
     <button class="music-control" id="musicBtn" onclick="toggleMusic()" style="display:none;">🎵</button>
     
-    <!-- كود الصوت المحسن للموبايل (يدعم m4a و mp3 مع رابط احتياطي) -->
     <audio id="bgMusic" loop preload="auto">
-        <!-- <source src="wedding-music.m4a" type="audio/mp4"> -->
         <source src="wdding.mpga" type="audio/mpeg">
-        <!-- رابط احتياطي يشتغل لو الملف المحلي فيه مشكلة -->
         <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
     </audio>
 
@@ -1325,13 +1316,11 @@
         }
         function checkPassword() {
             const passInput = document.getElementById('wishes-password').value;
-            const correctPass = "ayman2026"; // كلمة السر الحالية
+            const encodedPass = "YXltYW4yMDI2"; 
 
-            if (passInput === correctPass) {
-                // إخفاء مربع كلمة السر وإظهار التعليقات
+            if (btoa(passInput) === encodedPass) {
                 document.getElementById('password-container').style.display = 'none';
                 document.getElementById('wishes-content').style.display = 'block';
-                // تحميل التعليقات من جوجل شيت
                 loadPublicWishes(); 
             } else {
                 document.getElementById('password-error').style.display = 'block';
@@ -1345,7 +1334,6 @@
             const music = document.getElementById('bgMusic');
             music.volume = 0.5;
             
-            // محاولة تشغيل الموسيقى ومعالجة أي أخطاء في الموبايل
             const playPromise = music.play();
             if (playPromise !== undefined) {
                 playPromise.catch(error => {
@@ -1494,7 +1482,6 @@
         createParticles();
         revealOnScroll();
         
-        // معالجة أخطاء الموسيقى تلقائياً
         const bgMusic = document.getElementById('bgMusic');
         bgMusic.addEventListener('error', function() {
             console.log('جرب تشغيل المصدر التالي...');
